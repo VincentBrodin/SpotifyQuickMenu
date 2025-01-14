@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyQuickMenu", "SpotifyQuickMenu\SpotifyQuickMenu.csproj", "{52CDECE6-BA39-41E1-9D2E-495C7406CD37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Source", "Source\Source.csproj", "{3C3536A8-174E-463A-86D8-4128B0FC4100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleQuickMenu", "Console\ConsoleQuickMenu.csproj", "{BDBDF879-AE34-418A-84E2-AD730868AB06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{76F968A5-3B9A-4C67-B1F1-2EF97CEC1EC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52CDECE6-BA39-41E1-9D2E-495C7406CD37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52CDECE6-BA39-41E1-9D2E-495C7406CD37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52CDECE6-BA39-41E1-9D2E-495C7406CD37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52CDECE6-BA39-41E1-9D2E-495C7406CD37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3536A8-174E-463A-86D8-4128B0FC4100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3536A8-174E-463A-86D8-4128B0FC4100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3536A8-174E-463A-86D8-4128B0FC4100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3536A8-174E-463A-86D8-4128B0FC4100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDBDF879-AE34-418A-84E2-AD730868AB06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDBDF879-AE34-418A-84E2-AD730868AB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDBDF879-AE34-418A-84E2-AD730868AB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDBDF879-AE34-418A-84E2-AD730868AB06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76F968A5-3B9A-4C67-B1F1-2EF97CEC1EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F968A5-3B9A-4C67-B1F1-2EF97CEC1EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F968A5-3B9A-4C67-B1F1-2EF97CEC1EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F968A5-3B9A-4C67-B1F1-2EF97CEC1EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

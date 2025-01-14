@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Lato.css" />
+    <link rel="stylesheet" href="bootstrap-icons-1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <img id="track-img" class="track-img" src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" />
+        <div class="main-section">
+            <h5 id="track-name" class="media-text lato-black">Track name</h5>
+            <p id="track-artists" class="media-text lato-regular">All artists names</p>
+            <p id="track-album" class="media-text lato-regular">Album</p>
+
+            <div class="slider">
+                <i id="volume-icon" class="bi bi-volume-up hidden-button"></i>
+                <input id="volume" type="range" min="0" max="100" value="50" step="1" oninput="OnVolumeChange()" />
+            </div>
+
+
+            <div class="media-controls">
+                <button id="previous" class="hidden-button fade-hover" onclick="Previous()">
+                    <i class="bi bi-skip-start-fill"></i>
+                </button>
+
+                <button id="play" class="hidden-button fade-hover" onclick="Play()">
+                    <i id="play-icon" class="bi bi-play-fill"></i>
+                </button>
+
+                <button id="next" class="hidden-button fade-hover" onclick="Next()">
+                    <i class="bi bi-skip-end-fill"></i>
+                </button>
+            </div>
+
+            <div class="slider">
+                <p id="current-timestamp" class="lato-regular">00:00</p>
+                <input id="timestamp" type="range" min="0" max="100" value="50" step="1" 
+                       oninput="OnTimestampUpdate()" 
+                       onmousedown="MouseDownTimestamp()" 
+                       onmouseup="MouseUpTimestamp()"
+                       onchange="OnTimestampChange()"/>
+                <p id="end-timestamp" class="lato-regular">00:00</p>
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>

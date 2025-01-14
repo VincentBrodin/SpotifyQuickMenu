@@ -1,0 +1,21 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpotifyQuickMenu"
+        xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="SpotifyQuickMenu.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920"
+        WindowStyle="None"
+        Topmost="True"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        Background="Transparent"
+        Loaded="Window_Loaded"
+        AllowsTransparency="True">
+    <Grid>
+        <Wpf:WebView2 x:Name="WebContent" IsHitTestVisible="False" Panel.ZIndex="10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="400" Height="150" Margin="0,0,10,55" />
+        <Rectangle x:Name="MouseBg" Fill="Black" Width="400" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Right" RadiusX="10" RadiusY="10" Margin="0,0,10,55"/>
+    </Grid>
+</Window>

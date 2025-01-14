@@ -1,0 +1,112 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+
+main {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(45,52,54,1) 35%);
+    display: flex;
+    flex-flow: row;
+    border-radius: 10px;
+}
+
+h5 {
+    font-size: 17.5px;
+}
+
+p {
+    font-size: 12.5px;
+}
+
+
+.track-img {
+    height: 100vh;
+    width: 100vh;
+    aspect-ratio: 1;
+    border-radius: 10px;
+}
+
+.main-section {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+}
+
+.round-button {
+    background-color: darkgray;
+    border: none;
+    border-radius: 100%;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.hidden-button {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.fade-hover {
+    opacity: 1;
+    transition: opacity ease-in-out 0.25s;
+}
+
+    .fade-hover:hover {
+        opacity: 0.5;
+    }
+
+
+.media-controls {
+    width: 50%;
+    margin-top: auto;
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.media-text {
+    color: white;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.slider {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-flow: row;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+    .slider input {
+        flex-grow: 1;
+        min-width: 0;
+    }
+
+    .slider p, .slider i {
+        width: 50px;
+        text-align: center;
+    }
