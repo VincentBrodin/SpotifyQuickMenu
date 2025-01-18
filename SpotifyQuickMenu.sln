@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyQuickMenu", "SpotifyQuickMenu\SpotifyQuickMenu.csproj", "{52CDECE6-BA39-41E1-9D2E-495C7406CD37}"
 EndProject
@@ -10,6 +10,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleQuickMenu", "Console\ConsoleQuickMenu.csproj", "{BDBDF879-AE34-418A-84E2-AD730868AB06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{76F968A5-3B9A-4C67-B1F1-2EF97CEC1EC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A1F51F08-2A1C-47E5-BCBF-AF5255A99083}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		QuickMenu.png = QuickMenu.png
+		QuickMenuZoom.png = QuickMenuZoom.png
+		SpotifyQuickMenu.gif = SpotifyQuickMenu.gif
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
