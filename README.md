@@ -53,12 +53,16 @@ Open the solution in Visual Studio, restore NuGet packages, and run the project.
 ---
 
 # Known issues/ problems
-### Spotify API token expiration
+### 1. Spotify API token expiration
 - Spotify's tokens are valid for only 3600 seconds (1 hour). The app logs these tokens locally in a `token.json` file.
 - When the token expires, the mini player will automatically fetch a new token when you attempt an action (like play/pause). This process is seamless and does not require manual intervention.
 - **If the token refresh fails:**
 	- Delete the `token.json` file in the root directory.
 	- Relaunch the app to generate a new token.
+### 2. Playlist Switching When Changing Track Time
+- If you adjust the playback position (time) of a track playing from a playlist, the app may inadvertently switch the playback context to the artist's album instead of continuing within the playlist.
+- **Cause:** This issue stems from how the app interacts with the Spotify Web API's `Start/Resume Playback endpoint`, which resets the playback context when called.
+- **Workaround:** Avoid changing the playback position while playing from a playlist to prevent this issue. A permanent fix is under consideration.
 ---
 
 # Screenshots/GIFs
