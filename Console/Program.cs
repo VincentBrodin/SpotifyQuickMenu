@@ -5,7 +5,8 @@ using System.Text.Json;
 namespace ConsoleQuickMenu;
 
 public static class Program {
-	public static async Task Main(string[] args) {
+	public static async Task Main(string[] args) { 
+		string secretsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "secrets.txt");
 		(string id, string secret) = GetCredentials();
 		//Console.WriteLine($"Id: {id}\nSecret:{secret}");
 

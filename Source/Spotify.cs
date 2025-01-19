@@ -75,6 +75,39 @@ public class Spotify {
 		return token;
 	}
 
+	public async Task<Token> WebAuthAsync(Secrets secrets, CancellationToken cancellationToken = new()) {
+		const string url = "https://accounts.spotify.com/api/token";
+
+		// If not valid we ask the user to login and accept
+		string code = await GetAuthCode(secrets.ClientId, secrets.RedirectUri, cancellationToken);
+
+		// We then use the code we got to request a token
+		FormUrlEncodedContent requestData = new([
+			new KeyValuePair<string, string>("grant_type", "authorization_code"),
+			new KeyValuePair<string, string>("code", code),
+			new KeyValuePair<string, string>("redirect_uri", secrets.RedirectUri)
+		]);
+
+		// Request
+		using HttpRequestMessage request = new(HttpMethod.Post, url) {
+			Content = requestData
+		};
+		string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{secrets.ClientId}:{secrets.ClientSecret}"));
+		request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);
+		request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+		// Response 
+		using HttpResponseMessage response = await httpClient.SendAsync(request, cancellationToken);
+		response.EnsureSuccessStatusCode();
+
+		string responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+		Token token = JsonSerializer.Deserialize<Token>(responseContent);
+		token.CreatedAt = DateTime.Now;
+
+		return token;
+	}
+
+
 
 	/// <summary>
 	/// Opens the user's browser to prompt them to log in.

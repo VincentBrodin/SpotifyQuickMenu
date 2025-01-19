@@ -15,8 +15,7 @@ public partial class MainWindow : Window {
 	private const int BufferTime = 250;
 
 	private readonly Spotify spotify;
-	private readonly string clientId;
-	private readonly string clientSecrets;
+	private readonly Secrets secrets;
 	private readonly CancellationTokenSource cancellationTokenSource = new();
 	private readonly List<Task> tasks = [];
 
@@ -34,7 +33,9 @@ public partial class MainWindow : Window {
 		InitializeComponent();
 		spotify = new Spotify();
 
-		(clientId, clientSecrets) = GetCredentials();
+		string secretsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "secrets.txt");
+		secrets = Secrets.LoadFromFile(secretsPath) ?? throw new Exception("Could not load secrets");
+
 
 		ready = false;
 
@@ -59,6 +60,8 @@ public partial class MainWindow : Window {
 		WebContent.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
 
 
+		// Grabbing the client secrets
+
 		// First we check if the token is stored local and is valid
 		string pathToToken = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "localToken.json");
 		if (File.Exists(pathToToken)) {
@@ -72,14 +75,14 @@ public partial class MainWindow : Window {
 			else {
 				FileStream file = File.Create(pathToToken);
 				file.Close();
-				token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback", cancellationTokenSource.Token);
+				token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 				await File.WriteAllTextAsync(pathToToken, JsonSerializer.Serialize(token), cancellationTokenSource.Token);
 			}
 		}
 		else {
 			FileStream file = File.Create(pathToToken);
 			file.Close();
-			token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback", cancellationTokenSource.Token);
+			token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 			await File.WriteAllTextAsync(pathToToken, JsonSerializer.Serialize(token), cancellationTokenSource.Token);
 		}
 
@@ -136,7 +139,7 @@ public partial class MainWindow : Window {
 		if (!ready) return;
 
 		if (!token.Valid()) {
-			token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback", cancellationTokenSource.Token);
+			token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 		}
 
 		await spotify.SkipToPreviousAsync(token, cancellationTokenSource.Token);
@@ -148,7 +151,7 @@ public partial class MainWindow : Window {
 		if (!ready) return;
 
 		if (!token.Valid()) {
-			token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback", cancellationTokenSource.Token);
+			token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 		}
 
 		await spotify.SkipToNextAsync(token, cancellationTokenSource.Token);
@@ -160,7 +163,7 @@ public partial class MainWindow : Window {
 		if (!ready) return;
 
 		if (!token.Valid()) {
-			token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback", cancellationTokenSource.Token);
+			token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 		}
 
 		await spotify.StartPlaybackAsync(token, cancellationTokenSource.Token);
@@ -172,7 +175,7 @@ public partial class MainWindow : Window {
 		if (!ready) return;
 
 		if (!token.Valid()) {
-			token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback", cancellationTokenSource.Token);
+			token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 		}
 
 		await spotify.PausePlaybackAsync(token, cancellationTokenSource.Token);
@@ -185,7 +188,7 @@ public partial class MainWindow : Window {
 		if (!ready) return;
 
 		if (!token.Valid()) {
-			token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback", cancellationTokenSource.Token);
+			token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 		}
 
 		Timestamp timestamp = JsonSerializer.Deserialize<Timestamp>(webMessage.Content);
@@ -200,7 +203,7 @@ public partial class MainWindow : Window {
 	private async Task VolumeChanged(WebMessage webMessage) {
 		if (!ready) return;
 		if (!token.Valid()) {
-			token = await spotify.WebAuthAsync(clientId, clientSecrets, "http://localhost:8888/callback");
+			token = await spotify.WebAuthAsync(secrets, cancellationTokenSource.Token);
 		}
 
 		if (!int.TryParse(webMessage.Content, out volume)) {
@@ -269,23 +272,4 @@ public partial class MainWindow : Window {
 			Console.WriteLine($"No message handler for {webMessage.Id}");
 		}
 	}
-
-	private static (string, string) GetCredentials() {
-		string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "secrets.txt");
-		if (!File.Exists(path)) {
-			throw new FileNotFoundException("Missing secrets.txt file");
-		}
-
-		string[] lines = File.ReadAllLines(path);
-
-		if (lines.Length < 2) {
-			throw new IndexOutOfRangeException("Secrets does not contain enough values");
-		}
-
-		string clientId = lines[0];
-		string clientSecret = lines[1];
-
-		return (clientId, clientSecret);
-	}
-
 }
